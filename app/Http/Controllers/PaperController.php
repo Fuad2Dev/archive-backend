@@ -15,7 +15,7 @@ class PaperController extends Controller
     public function index()
     {
         return response()->json([
-            'papers' => Paper::select(['id', 'img', 'year', 'created_at'])->withCount('questions')->get()
+            'papers' => Paper::withCount('questions')->get()
         ]);
     }
 

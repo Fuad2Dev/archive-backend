@@ -16,7 +16,10 @@ class CourseController extends Controller
     {
         return response()->json([
             // 'courses' => Course::withCount('papers')->select(['title', 'img', 'created_at', 'papers_count'])->get(),
-            'courses' => Course::select(['id', 'title', 'img', 'created_at'])->withCount('papers')->get(),
+            // 'courses' => Course::filter()->withCount('papers')->get(),
+            // 'courses' => Course::all()->loadCount('papers'),
+            // 'courses' => Course::all(),
+            'courses' => Course::withCount('papers')->get(),
         ]);
     }
 
@@ -35,11 +38,15 @@ class CourseController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Course $course)
     {
-        //
+        $course->papers = $course->papers->loadCount('questions');
+
+        return response()->json([
+            'course' => $course
+        ]);
     }
 
     /**
