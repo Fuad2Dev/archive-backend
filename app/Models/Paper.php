@@ -12,11 +12,6 @@ class Paper extends Model
 
     protected $hidden = ['updated_at', 'course_id'];
 
-    protected static function booted()
-    {
-        // static::addGlobalScope(new PaperScope);
-    }
-
     public function questions()
     {
         return $this->hasMany(Question::class);

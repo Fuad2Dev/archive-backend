@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\CourseScope;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
@@ -16,9 +15,4 @@ class Course extends Model
     {
         return $this->hasMany(Paper::class);
     }
-
-    // public function scopeFilter($query)
-    // {
-    //     return $query->select(['id', 'title', 'img', 'created_at']);
-    // }
 }

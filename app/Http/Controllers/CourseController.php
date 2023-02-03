@@ -15,10 +15,6 @@ class CourseController extends Controller
     public function index()
     {
         return response()->json([
-            // 'courses' => Course::withCount('papers')->select(['title', 'img', 'created_at', 'papers_count'])->get(),
-            // 'courses' => Course::filter()->withCount('papers')->get(),
-            // 'courses' => Course::all()->loadCount('papers'),
-            // 'courses' => Course::all(),
             'courses' => Course::withCount('papers')->get(),
         ]);
     }
@@ -26,7 +22,7 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $requests
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

@@ -10,10 +10,5 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $hidden = ['updated_at'];
-
-    protected static function booted()
-    {
-        // static::addGlobalScope(new QuestionScope);
-    }
+    protected $hidden = ['updated_at', 'paper_id'];
 }
