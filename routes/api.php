@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaperController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\CoursePaperController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('courses', CourseController::class);
-Route::apiResource('papers', PaperController::class);
-Route::apiResource('questions', QuestionController::class);
+Route::apiResource('courses', CourseController::class)->only(['index', 'show']);
+// Route::apiResource('papers', PaperController::class);
+// Route::apiResource('questions', QuestionController::class);
+
+Route::apiResource('courses.papers', CoursePaperController::class)->only(['index', 'show']);

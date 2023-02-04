@@ -10,5 +10,5 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $hidden = ['updated_at', 'paper_id'];
+    protected $hidden = ['id', 'updated_at', 'paper_id'];
 }
