@@ -15,4 +15,4 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.worskpace }}
-      - run: echo "This job;s status is ${{ job.staus }}."
+      - run: echo "This job's status is ${{ job.status }}."
