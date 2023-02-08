@@ -30,8 +30,11 @@ Route::group(['prefix' => 'v2'], function () {
         Route::post('login', [AuthController::class, 'login']);
     });
 
-    Route::group(['middleware' => 'auth:sanctum'], function () {
-        Route::apiResource('courses', CourseController::class)->only(['index', 'show']);
-        Route::apiResource('courses.papers', CoursePaperController::class)->only(['index', 'show']);
-    });
+    Route::apiResource('courses', CourseController::class)->only(['index', 'show']);
+    Route::apiResource('courses.papers', CoursePaperController::class)->only(['index', 'show']);
+
+    // Route::group(['middleware' => 'auth:sanctum'], function () {
+    //     Route::apiResource('courses', CourseController::class)->only(['index', 'show']);
+    //     Route::apiResource('courses.papers', CoursePaperController::class)->only(['index', 'show']);
+    // });
 });
