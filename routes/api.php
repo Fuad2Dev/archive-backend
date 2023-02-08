@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaperController;
@@ -18,13 +19,19 @@ use App\Http\Controllers\CoursePaperController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1'], function () {
+    Route::apiResource('courses', CourseController::class)->only(['index', 'show']);
+    Route::apiResource('courses.papers', CoursePaperController::class)->only(['index', 'show']);
 });
 
+Route::group(['prefix' => 'v2'], function () {
+    Route::group(['middleware' => 'guest'], function () {
+        Route::post('register', [AuthController::class, 'register']);
+        Route::post('login', [AuthController::class, 'login']);
+    });
 
-Route::apiResource('courses', CourseController::class)->only(['index', 'show']);
-// Route::apiResource('papers', PaperController::class);
-// Route::apiResource('questions', QuestionController::class);
-
-Route::apiResource('courses.papers', CoursePaperController::class)->only(['index', 'show']);
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+        Route::apiResource('courses', CourseController::class)->only(['index', 'show']);
+        Route::apiResource('courses.papers', CoursePaperController::class)->only(['index', 'show']);
+    });
+});
